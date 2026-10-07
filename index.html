@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f13">
+<meta name="description" content="刺客信条系列中文互动图鉴：按故事年代排序的时间线、作品关系图谱、现代线与 Isu 设定。">
+<title>刺客信条系列互动图鉴 · 按历史年代</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 8 94h22l20-44 20 44h22z' fill='%23e0b354'/%3E%3C/svg%3E">
+</head>
+<body>
+<nav class="nav">
+  <div class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 6 8 94h22l20-44 20 44h22z" fill="#e0b354"/></svg><span class="full">刺客信条图鉴</span></div>
+  <div class="tabs"><a href="#timeline">时间线</a><a href="#graph">关系图谱</a><a href="#lore">现代线与设定</a><a href="#notes">说明/存疑</a></div>
+</nav>
+
+<header class="wrap hero">
+  <h1>刺客信条<span>·</span>历史年代互动图鉴</h1>
+  <p>共收录 <b id="count"></b> 部作品（正传、神话三部曲、编年史、重要外传与 DLC、已公布的新作），<b>按故事内的历史年代排列</b>，与发行顺序无关。点按卡片高亮相关作品并显示关联原因，再点一次打开详情。</p>
+  <div class="motto">「万物皆虚，万事皆允。」—— 刺客信条</div>
+  <div class="chips" id="chips" aria-label="按类型筛选"></div>
+  <p class="hint">资料截至 2026 年 10 月。带 <span style="color:#ff9c8c">「存疑」</span> 标记的内容为官方未明确、传闻或各资料说法不一之处。</p>
+</header>
+
+<main class="wrap">
+<section id="timeline">
+  <h2>时间线<small>公元前431年 → 1918年</small></h2>
+  <p class="hint">按故事年代排列。点按卡片后，相关作品会亮起并显示理由；再点一次打开详情。</p>
+  <div class="erabar" id="erabar"></div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section id="graph">
+  <h2>关系图谱<small>血脉 · 角色 · 伊甸碎片 · 组织 · 现代线</small></h2>
+  <p class="hint">横轴是年代，底部一行是现代线人物/组织。点按节点高亮其关联；也可以选择「主题线索」，按顺序串起一条故事链。图谱可左右滑动，也可缩放。</p>
+  <div class="gtools">
+    <div class="threads" id="threads"></div><div class="sp"></div>
+    <button class="iconbtn" id="zout" aria-label="缩小">－</button><button class="iconbtn" id="zin" aria-label="放大">＋</button><button class="iconbtn" id="zfit">适应宽度</button>
+  </div>
+  <div class="gbox" id="gbox"></div>
+  <div class="legend" id="legend"></div>
+  <div class="gpanel" id="gpanel"></div>
+</section>
+
+<section id="lore">
+  <h2>现代线与系列共通设定</h2>
+  <p class="hint">Desmond、Lucy、Abstergo、Layla、巴辛、Animus Hub，以及 Isu（第一文明）、伊甸碎片、贤者、朱诺、密涅瓦、Aita 等。</p>
+  <div class="lore" id="lore"></div>
+</section>
+
+<section id="notes">
+  <h2>说明、存疑与图片来源</h2>
+  <details open><summary>其他已公布 / 未纳入时间线的作品</summary>
+    <ul class="plain">
+      <li><b>代号 Invictus</b>：Ubisoft 蒙特利尔开发的 PvP 多人游戏（团队含《荣耀战魂》老成员）。截至 2026 年 3 月官方称其「以测试—学习方式稳步推进」，未公布发售日，也不对应具体历史时代，因此未放进时间线。</li>
+      <li><b>代号 Hexe / 代号 Jade</b>：已放进时间线（标为「未发售」），细节均待官方公布。</li>
+      <li><b>黑旗 Resynced</b>：2026 年 7 月 9 日发售的《黑旗》重制版，已收录。</li>
+      <li><b>刺客信条 Nexus VR</b>（2023）：现代 Abstergo 框架下重温艾吉奥、卡珊德拉、康纳的 VR 作品，此处只作提及。</li>
+      <li>官方另称正在探索回归合作模式，并已终止一个早期项目（未具名）。</li>
+      <li>手机/外传作品如《Identity》《Rebellion》《Pirates》以及电影、小说、漫画，本图鉴没有展开。</li>
+    </ul>
+  </details>
+  <details open><summary>全部存疑标注汇总</summary><ul class="plain" id="unclist"></ul></details>
+  <details><summary>术语对照</summary>
+    <ul class="plain">
+      <li>Assassin Brotherhood ＝ 刺客兄弟会；Hidden Ones ＝ 无形者（刺客前身）</li>
+      <li>Templar Order ＝ 圣殿骑士团；Order of the Ancients ＝ 古代维序者（圣殿前身；中文译名不统一）</li>
+      <li>Isu / First Civilization / Precursors ＝ 伊述 / 第一文明 / 先驱者（同一文明的不同称呼）</li>
+      <li>Piece of Eden ＝ 伊甸碎片；Apple of Eden ＝ 伊甸苹果；Sage ＝ 贤者</li>
+    </ul>
+  </details>
+  <details><summary>图片来源（每张图片均附原始链接）</summary>
+    <p class="hint">封面与官方宣传图版权归 Ubisoft 所有，此处仅作介绍和评论用途，链接指向维基百科或 Assassin's Creed Fandom Wiki 的文件页面。</p>
+    <table class="cred"><tbody id="cred"></tbody></table>
+  </details>
+</section>
+</main>
+<footer class="wrap">非官方粉丝图鉴，与 Ubisoft 无关联。资料来源：Ubisoft 官方新闻、维基百科、Assassin's Creed Fandom Wiki 及主流游戏媒体。资料截至 2026 年 10 月。</footer>
+
+<div class="selbar" id="selbar" role="status"><b id="selname"></b><button class="pri" id="selopen">详情</button><button id="selclear">清除</button></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-labelledby="dtitle">
+  <div class="dhead"><span class="grab"></span><h3 id="dtitle"></h3><button class="close" id="dclose" aria-label="关闭">×</button></div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+
+<script src="assets/credits.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
