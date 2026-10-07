@@ -1,32 +1,22 @@
-name: Deploy Pages
+name: Build gh-pages
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Decode images
+      - name: Decode images and publish to gh-pages
         run: |
-          cat imgparts/part0* | base64 -d | tar xz && rm -rf imgparts assets/img/*.b64
-          rm -rf .github
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          cat imgparts/part0* | base64 -d | tar xz
+          rm -rf imgparts assets/img/*.b64 .github
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git checkout --orphan gh-pages
+          git add -A
+          git commit -m "Deploy site"
+          git push -f origin gh-pages
